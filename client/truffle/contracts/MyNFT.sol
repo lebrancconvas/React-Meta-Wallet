@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract MyNFT is ERC721 {
 	using Counters for Counters.Counter; 
 	Counters.Counter private _tokenId;
-	construct() ERC721('TestNFT', 'TEST') {}
+	constructor() ERC721('TestNFT', 'TEST') {}
 	function mint(address owner) public {
 		_tokenId.increment();
 		uint newTokenID = _tokenId.current();
