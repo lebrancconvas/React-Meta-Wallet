@@ -30,5 +30,7 @@ export const init = async() => {
 };
 
 export const mintToken = () => {
-    nftContract.methods.mint(selectedAccount).send({ from: selectedAccount });
+    return nftContract.methods
+        .mint(selectedAccount)
+        .send({ from: selectedAccount });
 }
