@@ -22,17 +22,22 @@ function App() {
   return (
     <div>
       <Box sx={{textAlign: 'center'}}> 
-        {
-          !minted ? (
-            <Button variant="contained" onClick={() => mint()}>
-              Mint Token 
-            </Button>
-          ) : (
-            <Typography variant="h5">
-              Token minted successfully. 
-            </Typography>
-          )
-         }
+        <Typography variant="h3">
+          React Meta Wallet 
+        </Typography>
+        <Box mt={10}>
+          {
+            !minted ? (
+              <Button variant="contained" onClick={() => mint()}>
+                Mint Token 
+              </Button>
+            ) : (
+              <Typography variant="h5">
+                Token minted successfully. 
+              </Typography>
+            )
+          }
+        </Box>
       </Box>
     </div>
   );
