@@ -6,18 +6,16 @@ import {mintToken} from './controllers/Web3Client';
 function App() {
   const [minted, setMinted] = useState(false);
 
-  const mint = () => {
-    mintToken().then(transaction => {
+  const mint = async () => {
+    try {
+      const transaction = await mintToken();
       console.log(transaction);
-      setMinted(true);
-    }).catch(err => {
+      setMinted(true); 
+    } catch (err) {
       console.log(err);
-    })
+    }
   }
 
-  // useEffect(() => {
-  //   init();
-  // }, []); 
 
   return (
     <div>
