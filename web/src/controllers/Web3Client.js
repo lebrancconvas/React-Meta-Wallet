@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import NFTContractBuild from 'contracts/MyNFT.json';
+import NFTContractBuild from 'contracts/MyNFT';
 
 let selectedAccount;
 let nftContract;
