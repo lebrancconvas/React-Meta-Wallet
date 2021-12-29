@@ -4,6 +4,7 @@ import NFTContractBuild from 'contracts/MyNFT';
 let selectedAccount;
 let nftContract;
 const providerURL = process.env.PROVIDER_URL || 'http://localhost:8545';
+
 export const init = async() => {
     const web3 = new Web3(providerURL);
 
