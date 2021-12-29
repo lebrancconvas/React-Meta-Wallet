@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react'; 
+import React, {useState} from 'react'; 
 import {Typography, Button} from '@mui/material';
 import {Box} from '@mui/system';
 // import Web3 from 'web3'; 
-import {init, mintToken} from './controllers/Web3Client';
+import {mintToken} from './controllers/Web3Client';
 function App() {
   const [minted, setMinted] = useState(false);
 
@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div>
-      <Box>
+      <Box sx={{textAlign: 'center'}}> 
         {
           !minted ? (
             <Button variant="contained" onClick={() => mint()}>
