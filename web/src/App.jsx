@@ -1,14 +1,39 @@
-import React, {useEffect} from 'react'; 
+import React, {useState, useEffect} from 'react'; 
+import {Typography, Button} from '@mui/material';
+import {Box} from '@mui/system';
 // import Web3 from 'web3'; 
-import {init} from './controllers/Web3Client';
+import {init, mintToken} from './controllers/Web3Client';
 function App() {
+  const [minted, setMinted] = useState(false);
 
-  useEffect(() => {
-    init();
-  }, []); 
+  const mint = () => {
+    mintToken().then(transaction => {
+      console.log(transaction);
+      setMinted(true);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
+  // useEffect(() => {
+  //   init();
+  // }, []); 
 
   return (
     <div>
+      <Box>
+        {
+          !minted ? (
+            <Button variant="contained" onClick={() => mint()}>
+              Mint Token 
+            </Button>
+          ) : (
+            <Typography variant="h5">
+              Token minted successfully. 
+            </Typography>
+          )
+         }
+      </Box>
     </div>
   );
 }
