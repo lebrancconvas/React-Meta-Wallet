@@ -3,13 +3,14 @@ import NFTContractBuild from 'contracts/MyNFT';
 
 let selectedAccount;
 let nftContract;
-const providerURL = process.env.PROVIDER_URL || 'http://localhost:8545';
+let isInitialized = false;
+// const providerURL = process.env.PROVIDER_URL || 'http://localhost:8545';
 
 export const init = async() => {
-    const web3 = new Web3(providerURL);
 
     let provider = window.ethereum;
 
+    const web3 = new Web3(provider);
 
     if (typeof provider !== undefined) {
         provider.request({ method: 'eth_requestAccounts' }).then((accounts) => {
@@ -27,9 +28,14 @@ export const init = async() => {
         const networkID = await web3.eth.net.getId();
         nftContract = new web3.eth.Contract(NFTContractBuild.abi, NFTContractBuild.networks[networkID].address);
     }
+
+    isInitialized = true;
 };
 
-export const mintToken = () => {
+export const mintToken = async() => {
+    if (!isInitialized) {
+        await init();
+    }
     return nftContract.methods
         .mint(selectedAccount)
         .send({ from: selectedAccount });
