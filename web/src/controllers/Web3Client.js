@@ -4,6 +4,7 @@ import NFTContractBuild from 'contracts/MyNFT';
 let selectedAccount;
 let nftContract;
 let isInitialized = false;
+let accounts;
 // const providerURL = process.env.PROVIDER_URL || 'http://localhost:8545';
 
 export const init = async() => {
@@ -13,12 +14,13 @@ export const init = async() => {
     const web3 = new Web3(provider);
 
     if (typeof provider !== undefined) {
-        provider.request({ method: 'eth_requestAccounts' }).then((accounts) => {
-            selectedAccount = accounts[0];
+        try {
+            accounts = await provider.request({ method: 'eth_requestAccounts' });
+            selectedAccount = await accounts[0];
             console.log(`Selected Account is ${selectedAccount}`);
-        }).catch(err => {
+        } catch (err) {
             console.log(err);
-        })
+        }
 
         window.ethereum.on('accountsChanged', accounts => {
             selectedAccount = accounts[0];
