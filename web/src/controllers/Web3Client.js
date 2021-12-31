@@ -5,7 +5,6 @@ let selectedAccount;
 let nftContract;
 let isInitialized = false;
 let accounts;
-// const providerURL = process.env.PROVIDER_URL || 'http://localhost:8545';
 
 export const init = async() => {
 
